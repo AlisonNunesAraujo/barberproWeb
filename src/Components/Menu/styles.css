@@ -3,7 +3,6 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 10px;
   align-items: center;
   background-color: rgb(211, 37, 37);
 }

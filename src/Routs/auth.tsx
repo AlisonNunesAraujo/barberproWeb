@@ -7,8 +7,14 @@ export function Auth() {
     return (
         <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/Home" element={<Prive><Home /></Prive>} />
+            <Route
+                path="/Home"
+                element={
+                    <Prive>
+                        <Home />
+                    </Prive>
+                }
+            />
         </Routes>
-
-    )
-}    
+    );
+}

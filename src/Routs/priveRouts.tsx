@@ -1,16 +1,18 @@
-import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../ContextApi";
+
 import { ReactNode } from "react";
 
 
-type ChildrenProps = {
-    children: ReactNode;
+type children = {
+    children: ReactNode
 }
 
-export function Prive({ children }: ChildrenProps) {
-    const [user, setUser] = useState(true)
+export function Prive({ children }: children) {
+    const { logado } = useContext(AuthContext)
 
-    if (!user) {
+    if (!logado) {
         return <Navigate to="/" />
 
     }

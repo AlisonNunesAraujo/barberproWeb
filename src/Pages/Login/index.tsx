@@ -1,38 +1,69 @@
 import { useState } from "react";
-import './style.css'
+import "./style.css";
+import { AuthContext } from "../../ContextApi";
+import { useContext } from "react";
+
 export default function Login() {
-    const [criar, setCriar] = useState(true);
-    return (
-        <div className="conteiner">
-            {criar ? (
-                <div>
-                    <h2>Olá, entre na sua conta</h2>
-                    <input placeholder="Email" />
-                    <input placeholder="*****" />
-                    <button>
-                        <p>Entrar</p>
-                    </button>
-                    <button onClick={() => setCriar(false)}>
-                        <p>Criar conta!</p>
-                    </button>
-                </div>
-            ) : (
-                <div>
-                    <h2>Criar conta</h2>
-                    <input placeholder="Nome" />
-                    <input placeholder="Email" />
-                    <input placeholder="*****" />
-                    <button>
-                        <p>Criar conta!</p>
-                    </button>
-                    <button onClick={() => setCriar(true)}>
-                        <p>Voltar</p>
-                    </button>
-                </div>
-            )}
-            <div>
-                <img src="https://media.gettyimages.com/id/915640558/pt/foto/close-up-of-hairstylists-hands-cutting-strand-of-mans-hair.jpg?s=612x612&w=0&k=20&c=-Ft8SRAJsn42JdEH-lHhs0snVSwwfIzyoTppcmXMkmg=" />
-            </div>
+  const [criar, setCriar] = useState(true);
+  const { Register,Login } = useContext(AuthContext);
+
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+
+  async function Criar() {
+    Register({ email, senha });
+  }
+
+  async function Logar(){
+    Login({email,senha})
+  }
+
+  return (
+    <div className="conteiner">
+      {criar ? (
+        <div>
+          <h2>Olá, entre na sua conta</h2>
+          <input
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            placeholder="*****"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+          />
+          <button onClick={Logar}>
+            <p>Entrar</p>
+          </button>
+          <button onClick={() => setCriar(false)}>
+            <p>Criar conta!</p>
+          </button>
         </div>
-    );
+      ) : (
+        <div>
+          <h2>Criar conta</h2>
+          <input
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            placeholder="*****"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+          />
+          <button onClick={Criar}>
+            <p>Criar conta!</p>
+          </button>
+          <button onClick={() => setCriar(true)}>
+            <p>Voltar</p>
+          </button>
+        </div>
+      )}
+      <div>
+        <img src="https://media.gettyimages.com/id/915640558/pt/foto/close-up-of-hairstylists-hands-cutting-strand-of-mans-hair.jpg?s=612x612&w=0&k=20&c=-Ft8SRAJsn42JdEH-lHhs0snVSwwfIzyoTppcmXMkmg=" />
+      </div>
+    </div>
+  );
 }
