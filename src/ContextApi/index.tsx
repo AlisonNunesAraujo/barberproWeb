@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import { ReactNode } from "react";
 import { auth } from "../firebase/concect";
 import {
   createUserWithEmailAndPassword,
@@ -9,47 +8,24 @@ import { useNavigate } from "react-router-dom";
 import { addDoc, collection, doc, getDocs } from "firebase/firestore";
 import { db } from "../firebase/concect";
 import { deleteDoc } from "firebase/firestore";
+import { signOut } from "firebase/auth";
 
-export type childrenProps = {
-  children: ReactNode;
-};
-export type UserProps = {
-  setUser: any;
-  logado: any;
-  Register: (info: { email: string; senha: string }) => Promise<void>;
-  Login: (info: { email: string; senha: string }) => Promise<void>;
-  user: user;
-  AddDocument: (info: Document) => Promise<void>;
-  agendamentos: Document[];
-  Excluir: ({uid} : deleteUid)=> Promise<void>;
-};
+import { toast } from "react-toastify";
 
-export type user = {
-  email: string | null;
-  uid: string | null;
-};
+import {
+  Agendamentos,
+  Document,
+  UserProps,
+  childrenProps,
+  deleteUid,
+  user,
+} from "./types";
 
-type Document = {
-  cliente: string;
-  serviço: string;
-  valor: string;
-  horario: string;
-  uid: string 
-};
-
-interface Agendamentos {
-  cliente: string;
-  serviço: string;
-  valor: string;
-  horario: string;
-  uid: string
-}
-type deleteUid = {
-  uid: string
-}
 export const AuthContext = createContext({} as UserProps);
 
 export default function AuthProvider({ children }: childrenProps) {
+  
+  
   const navigation = useNavigate();
   const [user, setUser] = useState<user>({
     email: "",
@@ -71,7 +47,7 @@ export default function AuthProvider({ children }: childrenProps) {
             serviço: doc.data().serviço,
             horario: doc.data().horario,
             valor: doc.data().valor,
-            uid: doc.id
+            uid: doc.id,
           });
         });
 
@@ -79,7 +55,7 @@ export default function AuthProvider({ children }: childrenProps) {
       });
     }
     Hendle();
-  }, [AddDocument,Excluir]);
+  }, [AddDocument, Excluir]);
 
   async function Register({ email, senha }: { email: string; senha: string }) {
     try {
@@ -92,26 +68,18 @@ export default function AuthProvider({ children }: childrenProps) {
 
   async function Login({ email, senha }: { email: string; senha: string }) {
     try {
-      // logs in the user and gets the user data
       const data = await signInWithEmailAndPassword(auth, email, senha);
 
-      // alerts the user that the login was successful
-      alert("ok");
+      toast.success('Bem vindo!')
 
-      // sets the user in the context
       setUser({
         email: data.user.email,
         uid: data.user.uid,
       });
 
-      // prints the user data to the console
-      console.log(data);
-
-      // navigates to the home page
       navigation("/Home");
     } catch {
-      // alerts the user that there was an error
-      alert("erro");
+      toast.error('Algo deu errado!')
     }
   }
 
@@ -122,25 +90,35 @@ export default function AuthProvider({ children }: childrenProps) {
         serviço: serviço,
         valor: valor,
         horario: horario,
-        
-        
       });
-      alert("ok");
+      toast.success('Agendado')
     } catch {
-      alert("erro");
+     toast.error('Algo deu errado!')
     }
   }
 
-  async function Excluir({uid}: deleteUid){
-    const ref = doc(db,'Agendas', uid)
+  async function Excluir({ uid }: deleteUid) {
+    const ref = doc(db, "Agendas", uid);
 
     deleteDoc(ref)
-    .then(()=> {
-      alert('ok')
-    })
-    .catch(()=>{
-      alert('erro')
-    })
+      .then(() => {
+        toast.success('Excluido!')
+      })
+      .catch(() => {
+        toast.error('Algo deu errado!')
+      });
+  }
+
+  async function Sair() {
+    try {
+      await signOut(auth);
+      setUser({
+        email: "",
+        uid: "",
+      });
+    } catch {
+      toast.error('Algo deu errado!')
+    }
   }
 
   return (
@@ -153,7 +131,8 @@ export default function AuthProvider({ children }: childrenProps) {
         user,
         AddDocument,
         agendamentos,
-        Excluir
+        Excluir,
+        Sair,
       }}
     >
       {children}

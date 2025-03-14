@@ -32,6 +32,8 @@
     background-color: rgb(0, 0, 0);
     overflow: hidden;
     overflow-y: scroll;
+    align-items: center;
+    justify-content: center;
 }
 .renderLista h2{
     color: white;
