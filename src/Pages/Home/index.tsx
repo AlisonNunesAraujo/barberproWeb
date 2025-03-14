@@ -12,7 +12,7 @@ export default function Home() {
     }
 
     return (
-        <div>
+        <div className="cont">
             <Header />
             <div className="conteudo">
             <Menu />

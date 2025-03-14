@@ -1,14 +1,14 @@
 .menu {
   width: 30%;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(211, 37, 37);
+  background-color: rgb(23, 21, 21);
 }
 
 .menu h2 {
-  color: rgb(0, 0, 0);
+  color: white;
   font-size: 20px;
   text-align: center;
   margin: 10px;
@@ -39,4 +39,15 @@
   gap: 10px;
   align-items: center;
   margin: 10px;
+}
+.menu div p {
+  color: white;
+}
+
+@media screen and (max-width: 600px) {
+  .menu {
+    width: 100%;
+    height: 20%;
+  
+}
 }
