@@ -54,6 +54,11 @@
 }
 
 @media screen and (max-width: 600px) {
+    .cont{
+        width: 100%;
+        height: 100dvh;
+        background-color: black;
+    }
      .conteudo{
         flex-direction: column;
      }
