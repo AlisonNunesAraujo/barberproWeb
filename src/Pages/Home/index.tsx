@@ -2,7 +2,7 @@ import Header from "../../Components/Header";
 import Menu from "../../Components/Menu";
 import { useContext } from "react";
 import {AuthContext} from "../../ContextApi";
-
+import {FaTrash} from 'react-icons/fa'
 import './style.css'
 export default function Home() {
     const {agendamentos, Excluir} = useContext(AuthContext)
@@ -25,7 +25,7 @@ export default function Home() {
                      <p>Horario: {agendamento.horario}</p>
                      <p>Serviço: {agendamento.serviço}</p>
                      <p>Valor: R${agendamento.valor}</p>
-                     <button onClick={()=> Delete(agendamento.uid)}>Excluir</button>
+                     <button onClick={()=> Delete(agendamento.uid)}><FaTrash/></button>
                    </div>
                     )}
                

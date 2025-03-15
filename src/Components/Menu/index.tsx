@@ -32,7 +32,7 @@ export default function Menu() {
 
       {isShow ? (
         <div>
-          <p>Agendamentos</p>
+         
           <input
             placeholder="Nome do cliente"
             value={cliente}
