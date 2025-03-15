@@ -14,7 +14,7 @@ export default function Profile() {
         <p>
           Esse sistema foi feito para auxiliar os barbeiros a ter um controle de
           agendamentos de cortes ou outros serviços agendados para o dia.
-          Voçe pode adicionar, editar e excluir agendamentos, depois de ter criado seu cadatro na plataforma!
+          Voçe pode adicionar, editar e excluir agendamentos, depois de ter criado seu cadastro na plataforma!
         </p>
         <button onClick={()=> navigate('/Home')}>Voltar</button>
         <button onClick={Sair}>Sair</button>
