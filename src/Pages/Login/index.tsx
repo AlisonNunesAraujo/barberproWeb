@@ -39,6 +39,7 @@ export default function Login() {
           <input
             placeholder="*****"
             value={senha}
+            type="password"
             onChange={(e) => setSenha(e.target.value)}
           />
           <button onClick={Logar}>
@@ -59,6 +60,7 @@ export default function Login() {
           <input
             placeholder="*****"
             value={senha}
+              type="password"
             onChange={(e) => setSenha(e.target.value)}
           />
           <button onClick={Criar}>
