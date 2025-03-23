@@ -2,7 +2,7 @@ import "./styles.css";
 import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../ContextApi";
-
+import {toast} from 'react-toastify'
 export default function Menu() {
   const [isShow, setShow] = useState(false);
   const { AddDocument } = useContext(AuthContext);
@@ -12,6 +12,10 @@ export default function Menu() {
   const [valor, setValor] = useState("");
 
   async function Add() {
+    if(cliente == '' || serviço == '' || horario == '' || valor == ''){
+      toast.error('Prencha todos os campos!')
+      return;
+    }
     AddDocument({ cliente, horario, serviço, valor,uid:"" });
     setCliente("");
     setHorario("");
