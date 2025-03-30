@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { AuthContext } from "../../ContextApi";
 import {toast} from 'react-toastify'
 export default function Menu() {
-  const [isShow, setShow] = useState(false);
   const { AddDocument } = useContext(AuthContext);
   const [cliente, setCliente] = useState("");
   const [serviço, setServiço] = useState("");
@@ -26,15 +25,9 @@ export default function Menu() {
   return (
     <div className="menu">
       <h2>Adicionar agendamentos</h2>
-      {isShow ? (
-        <p></p>
-      ) : (
-        <button onClick={() => setShow(true)}>
-          <p>Clique para agendar</p>
-        </button>
-      )}
+      
 
-      {isShow ? (
+  
         <div>
          
           <input
@@ -60,13 +53,9 @@ export default function Menu() {
           <button onClick={Add}>
             <p>Agendar</p>
           </button>
-          <button onClick={() => setShow(false)}>
-            <p>Ocultar area!</p>
-          </button>
+          
         </div>
-      ) : (
-        <div></div>
-      )}
+      
     </div>
   );
 }

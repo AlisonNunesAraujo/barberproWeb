@@ -34,13 +34,16 @@
   border: none;
   cursor: pointer;
 }
-.conteiner div img {
-  width: 50%;
-  height: 50vh;
-  margin-right: 10%;
-  border-radius: 50%;
-  box-shadow: 0 0 10px 3px rgba(11, 3, 255, 0.5);
-  animation: imgInicial 3s infinite linear;
+
+
+.Barber {
+  font-size: 80px;
+  font-weight: 900;
+  animation: Inicial 4s infinite;
+  background-color: brown;
+  padding: 10px;
+  border-radius: 5px;
+  
 }
 
 @media screen and (max-width: 700px) {
@@ -57,12 +60,7 @@
     justify-content: space-around;
     gap: 10px;
   }
-  .conteiner div img {
-    width: 350px;
-    height: 350px;
-    margin-left: 10%;
-    margin-top: 50px;
-  }
+  
 
   .conteiner div input {
     width: 80%;
@@ -70,15 +68,25 @@
   .conteiner div button{
     width: 80%;
   }
+  .Barber {
+    font-size: 45px;
+    font-weight: 900;
+    animation: Inicial 4s infinite;
+    color: brown;
+    
+  }
+  .textAnimation{
+    margin-top: 40px;
+  }
   
 }
 
-@keyframes imgInicial{
+@keyframes Inicial{
     0%{
         transform: translateY(-0px);
     }
     50%{
-        transform: translateY(-10px);
+        transform: translateY(-20px);
     }
     100%{
         transform: translateY(0px);

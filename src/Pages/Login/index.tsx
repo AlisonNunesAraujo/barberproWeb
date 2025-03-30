@@ -71,8 +71,8 @@ export default function Login() {
           </button>
         </div>
       )}
-      <div>
-        <img src="https://media.gettyimages.com/id/915640558/pt/foto/close-up-of-hairstylists-hands-cutting-strand-of-mans-hair.jpg?s=612x612&w=0&k=20&c=-Ft8SRAJsn42JdEH-lHhs0snVSwwfIzyoTppcmXMkmg=" />
+      <div className="textAnimation">
+        <h2 className="Barber">BarberPro</h2>
       </div>
     </div>
   );

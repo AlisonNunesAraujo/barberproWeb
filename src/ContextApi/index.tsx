@@ -9,7 +9,7 @@ import { addDoc, collection, doc, getDocs } from "firebase/firestore";
 import { db } from "../firebase/concect";
 import { deleteDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
-
+import {query ,where} from 'firebase/firestore'
 import { toast } from "react-toastify";
 
 import {
@@ -38,7 +38,9 @@ export default function AuthProvider({ children }: childrenProps) {
   useEffect(() => {
     async function Hendle() {
       const data = collection(db, "Agendas");
-      getDocs(data).then((snapshot) => {
+      const receitaQuery = query(data, where("uid", "==", user.uid));
+      
+      getDocs(receitaQuery).then((snapshot) => {
         let lista: Agendamentos[] = [];
 
         snapshot.forEach((doc) => {
@@ -60,9 +62,10 @@ export default function AuthProvider({ children }: childrenProps) {
   async function Register({ email, senha }: { email: string; senha: string }) {
     try {
       await createUserWithEmailAndPassword(auth, email, senha);
-      alert("ok");
+      toast.info("Sua conta foi crianda com sucesso!")
+      navigation("/");
     } catch {
-      alert("erro");
+      toast.error("Algo deu errado!");
     }
   }
 
