@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../ContextApi";
 import {toast} from 'react-toastify';
-import Header from "../../Components/Header";
 export default function Menu() {
   const { AddDocument } = useContext(AuthContext);
   const [cliente, setCliente] = useState("");

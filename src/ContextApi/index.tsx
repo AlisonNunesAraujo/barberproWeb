@@ -9,7 +9,6 @@ import { addDoc, collection, doc, getDocs } from "firebase/firestore";
 import { db } from "../firebase/concect";
 import { deleteDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
-import {query ,where} from 'firebase/firestore'
 import { toast } from "react-toastify";
 
 import {
