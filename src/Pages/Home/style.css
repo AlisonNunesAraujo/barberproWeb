@@ -23,11 +23,17 @@
 .scroll button{
     width: 15%;
     height: 15vh;
-    background-color: blue;
     display: flex;
     border-radius: 10px;
     align-items: center;
     justify-content: center;
+    background-color: blue;
+    transition: all 0.7s ease-in-out;
+    
+}
+
+.scroll button:hover{
+    background-color: rgb(231, 54, 54);
     
 }
 .scroll p{

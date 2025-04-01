@@ -7,7 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { addDoc, collection, doc, getDocs } from "firebase/firestore";
 import { db } from "../firebase/concect";
-import { deleteDoc } from "firebase/firestore";
+import { deleteDoc, query,where } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 
@@ -37,9 +37,9 @@ export default function AuthProvider({ children }: childrenProps) {
   useEffect(() => {
     async function Hendle() {
       const data = collection(db, "Agendas");
-      // const receitaQuery = query(data, where("uid", "==", user.uid));
+      const receitaQuery = query(data, where("uid", "==", user.uid));
       
-      getDocs(data).then((snapshot) => {
+      getDocs(receitaQuery).then((snapshot) => {
         let lista: Agendamentos[] = [];
 
         snapshot.forEach((doc) => {
@@ -92,6 +92,7 @@ export default function AuthProvider({ children }: childrenProps) {
         serviço: serviço,
         valor: valor,
         horario: horario,
+        uid: user.uid
       });
       toast.success('Agendado')
     } catch {

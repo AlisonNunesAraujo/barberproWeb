@@ -3,8 +3,11 @@ import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../ContextApi";
 import {toast} from 'react-toastify';
+import { useNavigate } from "react-router-dom";
+
 export default function Menu() {
   const { AddDocument } = useContext(AuthContext);
+  const navigation = useNavigate();
   const [cliente, setCliente] = useState("");
   const [serviço, setServiço] = useState("");
   const [horario, setHorario] = useState("");
@@ -24,12 +27,13 @@ export default function Menu() {
 
   return (
     <div className="menu">
-      <h2>Adicionar agendamentos</h2>
+      
+    
       
 
   
         <div>
-         
+        <h2>Adicionar agendamentos</h2>
           <input
             placeholder="Nome do cliente"
             value={cliente}
@@ -52,6 +56,10 @@ export default function Menu() {
           />
           <button onClick={Add}>
             <p>Agendar</p>
+          </button>
+
+          <button onClick={()=> navigation('/home')}>
+            <p>Voltar para Home</p>
           </button>
           
         </div>
