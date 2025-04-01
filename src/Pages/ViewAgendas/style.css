@@ -1,0 +1,84 @@
+.viewRegister{
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(23, 21, 21);
+  display: flex;
+  flex-direction: column;
+}
+
+.div {
+  display: flex;
+}
+
+.agendados {
+  width: 18%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: blueviolet;
+  border-radius: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+.agendados p {
+  color: white;
+  font-weight: bold;
+}
+.agendados button {
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+
+.renderLista {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  overflow-y: scroll;
+  align-items: center;
+  flex-direction: column;
+}
+.renderLista h2 {
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.renderLista button{
+    background-color: red;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .cont {
+    width: 100%;
+    height: 100dvh;
+    background-color: rgb(23, 21, 21);
+  }
+  .conteudo {
+    flex-direction: column;
+  }
+  .renderLista {
+    width: 100%;
+    height: 90vh;
+    background-color: rgb(23, 21, 21);
+    align-items: center;
+  }
+  .agendados {
+    width: 50%;
+    margin-left: 10;
+    padding: 10px;
+    align-items: center;
+  }
+}

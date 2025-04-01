@@ -38,9 +38,9 @@ export default function AuthProvider({ children }: childrenProps) {
   useEffect(() => {
     async function Hendle() {
       const data = collection(db, "Agendas");
-      const receitaQuery = query(data, where("uid", "==", user.uid));
+      // const receitaQuery = query(data, where("uid", "==", user.uid));
       
-      getDocs(receitaQuery).then((snapshot) => {
+      getDocs(data).then((snapshot) => {
         let lista: Agendamentos[] = [];
 
         snapshot.forEach((doc) => {

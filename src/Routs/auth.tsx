@@ -4,6 +4,8 @@ import Login from "../Pages/Login";
 import { Routes, Route } from "react-router-dom";
 import { Prive } from "./priveRouts";
 import Profile from "../Pages/Profile";
+import ViewRegister from "../Pages/ViewAgendas";
+import Menu from "../Pages/Menu";
 export function Auth() {
   return (
     <Routes>
@@ -23,6 +25,18 @@ export function Auth() {
             <Home />
           </Prive>
         }
+      />
+      <Route
+        path="/ViewRegister"
+        element={
+          <Prive>
+            <ViewRegister />
+          </Prive>
+        }
+      />
+      <Route
+      path="/menu"
+      element={<Prive><Menu/></Prive>}
       />
     </Routes>
   );

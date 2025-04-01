@@ -1,36 +1,26 @@
 import Header from "../../Components/Header";
-import Menu from "../../Components/Menu";
-import { useContext } from "react";
-import {AuthContext} from "../../ContextApi";
-import {FaTrash} from 'react-icons/fa'
-import './style.css'
+// import { useContext } from "react";
+// import {AuthContext} from "../../ContextApi";
+import { useNavigate } from "react-router-dom";
+import "./style.css";
 export default function Home() {
-    const {agendamentos, Excluir} = useContext(AuthContext)
+  // const {agendamentos, Excluir} = useContext(AuthContext)
+  const navigation = useNavigate();
 
-    function Delete(uid: string){
-        Excluir({uid})
-    }
+  return (
+    <div className="cont">
+      <Header />
+      <div className="conteudo">
+        <div className="scroll">
+          <button onClick={() => navigation("/menu")}>
+            <p>Agendar</p>
+          </button>
 
-    return (
-        <div className="cont">
-            <Header />
-            <div className="conteudo">
-            <Menu />
-            <div className="renderLista">
-                <h2>Agendamentos</h2>
-               
-                {agendamentos.map((agendamento) => 
-                   <div className="agendados">
-                     <p>Nome: {agendamento.cliente}</p>
-                     <p>Horario: {agendamento.horario}</p>
-                     <p>Serviço: {agendamento.serviço}</p>
-                     <p>Valor: R${agendamento.valor}</p>
-                     <button onClick={()=> Delete(agendamento.uid)}><FaTrash/></button>
-                   </div>
-                    )}
-               
-            </div>
-            </div>
+          <button onClick={() => navigation("/ViewRegister")}>
+            <p>Ver agendamentos</p>
+          </button>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
