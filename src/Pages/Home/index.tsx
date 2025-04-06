@@ -21,6 +21,15 @@ export default function Home() {
           </button>
         </div>
       </div>
+
+      <div className="beneficios">
+        <div>
+          <p>Melhore o sistema de agendamentos da sua barbearia</p>
+        </div>
+        <div>
+          <p>Agilidade para o barbeiro</p>
+        </div>
+      </div>
     </div>
   );
 }
