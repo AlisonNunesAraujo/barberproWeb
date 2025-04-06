@@ -35,7 +35,6 @@
   cursor: pointer;
 }
 
-
 .Barber {
   font-size: 80px;
   font-weight: 900;
@@ -43,7 +42,6 @@
   background-color: brown;
   padding: 10px;
   border-radius: 5px;
-  
 }
 
 @media screen and (max-width: 700px) {
@@ -60,12 +58,11 @@
     justify-content: space-around;
     gap: 10px;
   }
-  
 
   .conteiner div input {
     width: 80%;
   }
-  .conteiner div button{
+  .conteiner div button {
     width: 80%;
   }
   .Barber {
@@ -73,22 +70,20 @@
     font-weight: 900;
     animation: Inicial 4s infinite;
     color: brown;
-    
   }
-  .textAnimation{
+  .textAnimation {
     margin-top: 40px;
   }
-  
 }
 
-@keyframes Inicial{
-    0%{
-        transform: translateY(-0px);
-    }
-    50%{
-        transform: translateY(-20px);
-    }
-    100%{
-        transform: translateY(0px);
-    }
+@keyframes Inicial {
+  0% {
+    transform: translateY(-0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }

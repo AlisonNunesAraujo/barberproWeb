@@ -2,28 +2,28 @@ import { useState } from "react";
 import "./style.css";
 import { AuthContext } from "../../ContextApi";
 import { useContext } from "react";
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 export default function Login() {
   const [criar, setCriar] = useState(true);
-  const { Register,Login } = useContext(AuthContext);
+  const { Register, Login } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
   async function Criar() {
-    if(email == '' || senha == ''){
+    if (email == '' || senha == '') {
       toast.error('Preencha todos os campos!')
       return;
     }
     Register({ email, senha });
   }
 
-  async function Logar(){
-    if(email == '' || senha == ''){
+  async function Logar() {
+    if (email == '' || senha == '') {
       toast.error('Preencha todos os campos!')
       return;
     }
-    Login({email,senha})
+    Login({ email, senha })
   }
 
   return (
@@ -60,7 +60,7 @@ export default function Login() {
           <input
             placeholder="*****"
             value={senha}
-              type="password"
+            type="password"
             onChange={(e) => setSenha(e.target.value)}
           />
           <button onClick={Criar}>
