@@ -7,7 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { addDoc, collection, doc, getDocs } from "firebase/firestore";
 import { db } from "../firebase/concect";
-import { deleteDoc, query,where } from "firebase/firestore";
+import { deleteDoc, query, where } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 
@@ -23,14 +23,15 @@ import {
 export const AuthContext = createContext({} as UserProps);
 
 export default function AuthProvider({ children }: childrenProps) {
-  
-  
+
+
   const navigation = useNavigate();
   const [user, setUser] = useState<user>({
     email: "",
     uid: "",
   });
   const [agendamentos, setAgendamentos] = useState<Agendamentos[]>([]);
+  const [loading, setLoading] = useState(false)
 
   const logado = user?.email && user?.uid;
 
@@ -38,7 +39,7 @@ export default function AuthProvider({ children }: childrenProps) {
     async function Hendle() {
       const data = collection(db, "Agendas");
       const receitaQuery = query(data, where("uid", "==", user.uid));
-      
+
       getDocs(receitaQuery).then((snapshot) => {
         let lista: Agendamentos[] = [];
 
@@ -59,16 +60,21 @@ export default function AuthProvider({ children }: childrenProps) {
   }, [AddDocument, Excluir]);
 
   async function Register({ email, senha }: { email: string; senha: string }) {
+    setLoading(true)
     try {
       await createUserWithEmailAndPassword(auth, email, senha);
       toast.info("Sua conta foi crianda com sucesso!")
-      navigation("/");
+      navigation("/Home");
+      setLoading(false)
     } catch {
       toast.error("Algo deu errado!");
+      setLoading(false)
     }
+    setLoading(false)
   }
 
   async function Login({ email, senha }: { email: string; senha: string }) {
+    setLoading(true)
     try {
       const data = await signInWithEmailAndPassword(auth, email, senha);
 
@@ -80,12 +86,16 @@ export default function AuthProvider({ children }: childrenProps) {
       });
 
       navigation("/Home");
+      setLoading(false)
     } catch {
       toast.error('Algo deu errado!')
+      setLoading(false)
     }
+    setLoading(false)
   }
 
   async function AddDocument({ cliente, serviço, valor, horario }: Document) {
+    setLoading(true)
     try {
       await addDoc(collection(db, "Agendas"), {
         cliente: cliente,
@@ -95,9 +105,12 @@ export default function AuthProvider({ children }: childrenProps) {
         uid: user.uid
       });
       toast.success('Agendado')
+      setLoading(false)
     } catch {
-     toast.error('Algo deu errado!')
+      toast.error('Algo deu errado!')
+      setLoading(false)
     }
+    setLoading(false)
   }
 
   async function Excluir({ uid }: deleteUid) {
@@ -136,6 +149,7 @@ export default function AuthProvider({ children }: childrenProps) {
         agendamentos,
         Excluir,
         Sair,
+        loading
       }}
     >
       {children}

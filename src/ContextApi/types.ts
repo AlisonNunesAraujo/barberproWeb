@@ -13,6 +13,7 @@ export type UserProps = {
   agendamentos: Document[];
   Excluir: ({uid} : deleteUid)=> Promise<void>;
   Sair: () => Promise<void>
+  loading: boolean
 };
 export type user = {
   email: string | null;

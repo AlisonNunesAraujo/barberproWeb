@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { toast } from 'react-toastify'
 export default function Login() {
   const [criar, setCriar] = useState(true);
-  const { Register, Login } = useContext(AuthContext);
+  const { Register, Login, loading } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -16,7 +16,10 @@ export default function Login() {
       return;
     }
     Register({ email, senha });
+    setEmail('')
+    setSenha('')
   }
+
 
   async function Logar() {
     if (email == '' || senha == '') {
@@ -24,6 +27,8 @@ export default function Login() {
       return;
     }
     Login({ email, senha })
+    setEmail('')
+    setSenha('')
   }
 
   return (
@@ -43,7 +48,11 @@ export default function Login() {
             onChange={(e) => setSenha(e.target.value)}
           />
           <button onClick={Logar}>
-            <p>Entrar</p>
+            {loading ? (
+              <p>carregando...</p>
+            ) : (
+              <p>Entrar</p>
+            )}
           </button>
           <button onClick={() => setCriar(false)}>
             <p>Criar conta!</p>
@@ -64,7 +73,11 @@ export default function Login() {
             onChange={(e) => setSenha(e.target.value)}
           />
           <button onClick={Criar}>
-            <p>Criar conta!</p>
+            {loading ? (
+              <p>carregando...</p>
+            ) : (
+              <p>Criar conta!</p>
+            )}
           </button>
           <button onClick={() => setCriar(true)}>
             <p>Voltar</p>
