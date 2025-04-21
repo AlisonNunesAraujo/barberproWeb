@@ -123,6 +123,10 @@
     justify-content: center;
     text-align: center;
   }
+  .scroll button p {
+    font-size: 15px;
+    color: azure;
+  }
   .scroll p {
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     font-weight: bold;
