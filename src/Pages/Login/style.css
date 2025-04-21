@@ -7,7 +7,7 @@
   background-color: rgb(34, 29, 29);
 }
 
-.conteiner form {
+.conteiner div {
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -15,10 +15,10 @@
   justify-content: space-between;
   gap: 10px;
 }
-.conteiner form h2 {
+.conteiner div h2 {
   color: rgb(255, 255, 255);
 }
-.conteiner form input {
+.conteiner div input {
   width: 50%;
   height: 40px;
   border-radius: 5px;
@@ -27,7 +27,7 @@
   outline: none;
 }
 
-.conteiner form button {
+.conteiner div button {
   width: 50%;
   height: 40px;
   border-radius: 5px;
@@ -53,7 +53,7 @@
     height: 100dvh;
     flex-direction: column;
   }
-  .conteiner form {
+  .conteiner div {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -62,10 +62,10 @@
     gap: 10px;
   }
 
-  .conteiner form input {
+  .conteiner div input {
     width: 80%;
   }
-  .conteiner form button {
+  .conteiner div button {
     width: 80%;
   }
   .Barber {

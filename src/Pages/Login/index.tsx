@@ -4,9 +4,9 @@ import { AuthContext } from "../../ContextApi";
 import { useContext } from "react";
 import { toast } from 'react-toastify'
 
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
+// import { useForm } from 'react-hook-form'
+// import { z } from 'zod'
+// import { zodResolver } from '@hookform/resolvers/zod'
 
 export default function Login() {
   const [criar, setCriar] = useState(true);
@@ -17,14 +17,14 @@ export default function Login() {
 
 
 
-  const schema = z.object({
-    email: z.string().email().nonempty('O email precisa ser preenchido'),
-    senha: z.string().min(6).nonempty('A senha precisa ser preenchida')
-  })
+  // const schema = z.object({
+  //   email: z.string().email().nonempty('O email precisa ser preenchido'),
+  //   senha: z.string().min(6).nonempty('A senha precisa ser preenchida')
+  // })
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: zodResolver(schema)
-  })
+  // const { register, handleSubmit, formState: { errors } } = useForm({
+  //   resolver: zodResolver(schema)
+  // })
 
 
 
@@ -52,7 +52,7 @@ export default function Login() {
   return (
     <div className="conteiner">
       {criar ? (
-        <form onSubmit={handleSubmit(Logar)}>
+        <div >
           <h2>Olá, entre na sua conta</h2>
           <input
             placeholder="Email"
@@ -77,12 +77,12 @@ export default function Login() {
           <button onClick={() => setCriar(false)}>
             <p>Criar conta!</p>
           </button>
-        </form>
+        </div>
       ) : (
 
 
 
-        <form >
+        <div >
           <h2>Criar conta</h2>
           <input
             placeholder="Email"
@@ -107,7 +107,7 @@ export default function Login() {
           <button onClick={() => setCriar(true)}>
             <p>Voltar</p>
           </button>
-        </form>
+        </div>
       )}
 
     </div>
