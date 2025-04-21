@@ -77,7 +77,7 @@
     align-items: center;
   }
   .agendados {
-    width: 50%;
+    width: auto;
     margin-left: 10;
     padding: 10px;
     align-items: center;

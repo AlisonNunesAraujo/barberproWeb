@@ -46,6 +46,7 @@ export default function Menu() {
         />
         <input
           placeholder="Valor"
+          type="number"
           value={valor}
           onChange={(e) => setValor(e.target.value)}
         />
