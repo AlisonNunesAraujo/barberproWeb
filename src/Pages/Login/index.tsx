@@ -3,6 +3,11 @@ import "./style.css";
 import { AuthContext } from "../../ContextApi";
 import { useContext } from "react";
 import { toast } from 'react-toastify'
+
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
 export default function Login() {
   const [criar, setCriar] = useState(true);
   const { Register, Login, loading } = useContext(AuthContext);
@@ -10,23 +15,36 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  async function Criar() {
+
+
+  const schema = z.object({
+    email: z.string().email().nonempty('O email precisa ser preenchido'),
+    senha: z.string().min(6).nonempty('A senha precisa ser preenchida')
+  })
+
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: zodResolver(schema)
+  })
+
+
+
+  async function Criar(data: any) {
     if (email == '' || senha == '') {
       toast.error('Preencha todos os campos!')
       return;
     }
-    Register({ email, senha });
+    Register(data);
     setEmail('')
     setSenha('')
   }
 
 
-  async function Logar() {
+  async function Logar(data: any) {
     if (email == '' || senha == '') {
       toast.error('Preencha todos os campos!')
       return;
     }
-    Login({ email, senha })
+    Login(data)
     setEmail('')
     setSenha('')
   }
@@ -34,20 +52,21 @@ export default function Login() {
   return (
     <div className="conteiner">
       {criar ? (
-        <div>
+        <form onSubmit={handleSubmit(Logar)}>
           <h2>Olá, entre na sua conta</h2>
           <input
             placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            {...register}
           />
+          <p className="erros">{errors.email?.message}</p>
           <input
             placeholder="*****"
-            value={senha}
             type="password"
-            onChange={(e) => setSenha(e.target.value)}
+            {...register}
+
           />
-          <button onClick={Logar}>
+          <p className="erros">{errors.senha?.message}</p>
+          <button type="submit">
             {loading ? (
               <p>carregando...</p>
             ) : (
@@ -57,21 +76,21 @@ export default function Login() {
           <button onClick={() => setCriar(false)}>
             <p>Criar conta!</p>
           </button>
-        </div>
+        </form>
       ) : (
-        <div>
+        <form>
           <h2>Criar conta</h2>
           <input
             placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            {...register}
           />
+          <p className="erros">{errors.email?.message}</p>
           <input
             placeholder="*****"
             value={senha}
-            type="password"
-            onChange={(e) => setSenha(e.target.value)}
+            {...register}
           />
+          <p className="erros">{errors.senha?.message}</p>
           <button onClick={Criar}>
             {loading ? (
               <p>carregando...</p>
@@ -82,7 +101,7 @@ export default function Login() {
           <button onClick={() => setCriar(true)}>
             <p>Voltar</p>
           </button>
-        </div>
+        </form>
       )}
       <div className="textAnimation">
         <h2 className="Barber">BarberPro</h2>

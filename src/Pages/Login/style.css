@@ -7,18 +7,18 @@
   background-color: rgb(34, 29, 29);
 }
 
-.conteiner div {
-  width: 100%;
+.conteiner form {
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
 }
-.conteiner div h2 {
+.conteiner form h2 {
   color: rgb(255, 255, 255);
 }
-.conteiner div input {
+.conteiner form input {
   width: 50%;
   height: 40px;
   border-radius: 5px;
@@ -27,7 +27,7 @@
   outline: none;
 }
 
-.conteiner div button {
+.conteiner form button {
   width: 50%;
   height: 40px;
   border-radius: 5px;
@@ -36,21 +36,24 @@
 }
 
 .Barber {
-  font-size: 80px;
+  font-size: 60px;
   font-weight: 900;
   animation: Inicial 4s infinite;
   background-color: brown;
   padding: 10px;
   border-radius: 5px;
+  margin-right: 100px;
 }
-
+.erros {
+  color: wheat;
+}
 @media screen and (max-width: 700px) {
   .conteiner {
     width: 100%;
     height: 100dvh;
     flex-direction: column;
   }
-  .conteiner div {
+  .conteiner form {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -59,10 +62,10 @@
     gap: 10px;
   }
 
-  .conteiner div input {
+  .conteiner form input {
     width: 80%;
   }
-  .conteiner div button {
+  .conteiner form button {
     width: 80%;
   }
   .Barber {
