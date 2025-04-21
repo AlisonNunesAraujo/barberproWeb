@@ -2,7 +2,7 @@ import "./styles.css";
 import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../ContextApi";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 export default function Menu() {
@@ -14,8 +14,8 @@ export default function Menu() {
   const [valor, setValor] = useState("");
 
   async function Add() {
-    if (cliente == '' || serviço == '' || horario == '' || valor == '') {
-      toast.error('Prencha todos os campos!')
+    if (cliente == "" || serviço == "" || horario == "" || valor == "") {
+      toast.error("Prencha todos os campos!");
       return;
     }
     AddDocument({ cliente, horario, serviço, valor, uid: "" });
@@ -27,11 +27,6 @@ export default function Menu() {
 
   return (
     <div className="menu">
-
-
-
-
-
       <div>
         <h2>Adicionar agendamentos</h2>
         <input
@@ -55,19 +50,13 @@ export default function Menu() {
           onChange={(e) => setValor(e.target.value)}
         />
         <button onClick={Add}>
-          {loading ? (
-            <p>Carregando</p>
-          ) : (
-            <p>Agendar</p>
-          )}
+          {loading ? <p>Carregando</p> : <p>Agendar</p>}
         </button>
 
-        <button onClick={() => navigation('/home')}>
+        <button onClick={() => navigation("/home")}>
           <p>Voltar para Home</p>
         </button>
-
       </div>
-
     </div>
   );
 }
