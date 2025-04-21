@@ -28,23 +28,23 @@ export default function Login() {
 
 
 
-  async function Criar(data: any) {
+  async function Criar() {
     if (email == '' || senha == '') {
       toast.error('Preencha todos os campos!')
       return;
     }
-    Register(data);
+    Register({ senha, email });
     setEmail('')
     setSenha('')
   }
 
 
-  async function Logar(data: any) {
+  async function Logar() {
     if (email == '' || senha == '') {
       toast.error('Preencha todos os campos!')
       return;
     }
-    Login(data)
+    Login({ email, senha })
     setEmail('')
     setSenha('')
   }
@@ -56,17 +56,18 @@ export default function Login() {
           <h2>Olá, entre na sua conta</h2>
           <input
             placeholder="Email"
-            {...register}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <p className="erros">{errors.email?.message}</p>
+
           <input
             placeholder="*****"
             type="password"
-            {...register}
-
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
           />
-          <p className="erros">{errors.senha?.message}</p>
-          <button type="submit">
+
+          <button onClick={Logar}>
             {loading ? (
               <p>carregando...</p>
             ) : (
@@ -78,19 +79,24 @@ export default function Login() {
           </button>
         </form>
       ) : (
-        <form>
+
+
+
+        <form >
           <h2>Criar conta</h2>
           <input
             placeholder="Email"
-            {...register}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <p className="erros">{errors.email?.message}</p>
+
           <input
             placeholder="*****"
+            type="password"
             value={senha}
-            {...register}
+            onChange={(e) => setSenha(e.target.value)}
           />
-          <p className="erros">{errors.senha?.message}</p>
+
           <button onClick={Criar}>
             {loading ? (
               <p>carregando...</p>
@@ -103,9 +109,7 @@ export default function Login() {
           </button>
         </form>
       )}
-      <div className="textAnimation">
-        <h2 className="Barber">BarberPro</h2>
-      </div>
+
     </div>
   );
 }
